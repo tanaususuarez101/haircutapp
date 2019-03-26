@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle="">
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Servicios</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item-group *ngFor="let typeServices of serviceAvailable">
+      <ion-item-divider color="secondary">{{typeServices.group_name}}</ion-item-divider>
+      <button ion-item *ngFor="let item of typeServices.group_service" (click)="goDoReservation(item)">
+        <h2>{{item.service_name}}</h2>
+        <p>{{item.duration}}</p>
+        <ion-note item-end>
+          {{item.price}} €
+        </ion-note>
+      </button>
+    </ion-item-group>
+  </ion-list>
+</ion-content>
