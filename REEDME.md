@@ -12,5 +12,8 @@ todas las librerías y paquetes.
 
 # Comandos
 + Instalación de Firebase ``npm install firebase @angular/fire --save`` \
++ Calendar Ionic ``npm install ionic3-calendar-en --save``
++ instalar moment ``npm install moment`` esto es necesario para que funcione calendar ionic
 
-
+# Biografía
++ [Calendar ionic](https://www.npmjs.com/package/ion2-calendar)

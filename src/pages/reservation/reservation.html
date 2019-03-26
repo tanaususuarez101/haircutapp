@@ -7,13 +7,62 @@
 
 <ion-header>
   <ion-navbar color="primary">
-    <ion-title>Reservas</ion-title>
+    <ion-title>Reservar</ion-title>
   </ion-navbar>
-  <ion-toolbar color="secondary">
-    <ion-title>{{typeService?.service_name}}</ion-title>
-  </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding-top>
 
+  <ion-list>
+
+    <ion-item>
+      Fecha
+      <button ion-button item-end>
+        <ion-icon name="calendar" (click)="openCalendar()" icon-only></ion-icon>
+      </button>
+      <ion-note color="dark" item-end>
+        {{date?.time | date:["dd-MM-yyyy"]}}
+      </ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="dark">Hora</ion-label>
+      <ion-datetime displayFormat="HH:mm"
+                    pickerFormat="HH:mm"
+                    [(ngModel)]="hour"
+      >Selecciones hora</ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      Servicio
+      <ion-note item-end>
+        {{typeService?.service_name}}
+      </ion-note>
+    </ion-item>
+
+    <ion-item>
+      Precio
+      <ion-note item-end>
+        {{typeService?.price}}€
+      </ion-note>
+    </ion-item>
+
+    <ion-item>
+      Duración
+      <ion-note item-end>
+        {{typeService?.duration}}
+      </ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="dark">Peluquero</ion-label>
+      <ion-select  [(ngModel)]="employees" submitText="Ok" cancelText="Cancelar" >
+        <ion-option value="default">Todos</ion-option>
+        <ion-option *ngFor="let item of listEmployees" value="{{item?.id}}">{{item?.name}}</ion-option>
+      </ion-select>
+    </ion-item>
+
+  </ion-list>
+
+  <button ion-button block (click)="doReserve()">Reservar</button>
 </ion-content>

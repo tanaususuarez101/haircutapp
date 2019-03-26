@@ -7,6 +7,8 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule} from '@angular/fire/database';
 import { AngularFireAuthModule} from '@angular/fire/auth';
+//import { CalendarModule } from 'ionic3-calendar-en';
+import { CalendarModule } from "ion2-calendar";
 
 import { MyApp } from './app.component';
 import { TodoProvider } from '../providers/todo/todo';
@@ -36,7 +38,9 @@ const firebaseConfig = {
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    CalendarModule
+    //CalendarModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

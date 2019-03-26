@@ -27,7 +27,7 @@ export class ServicesPage {
   ionViewDidLoad() {
     this.todo.getAvailableServices().subscribe(data => {
       this.serviceAvailable = data;
-      console.log(this.serviceAvailable);
+      //console.log(this.serviceAvailable);
     });
   }
 
