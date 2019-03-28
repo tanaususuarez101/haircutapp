@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import {AngularFireDatabase} from "@angular/fire/database";
+import {AngularFireDatabase, AngularFireList} from "@angular/fire/database";
 import {Observable} from "rxjs";
+import {map} from "rxjs/operators";
 
 /*
   Generated class for the TodoProvider provider.
@@ -11,18 +12,40 @@ import {Observable} from "rxjs";
 @Injectable()
 export class TodoProvider {
 
+  private reservationRef: AngularFireList<any>;
 
+  reservation:any = {};
 
-  constructor( private fdb: AngularFireDatabase) {}
+  constructor( private fdb: AngularFireDatabase) {
+    this.reservationRef = this.fdb.list('reservations');
+  }
 
   getAvailableServices():Observable<any>{
     return this.fdb.object('/services').valueChanges();
   }
 
-
   getMyServices():Observable<any> {
-    return this.fdb.object('/reservations').valueChanges();
+    return this.fdb.object('/reservations').valueChanges()
+      .pipe(
+        map(value => {
+          return value
+        })
+      );
   }
+
+  getReservations(){
+    return this.reservation;
+  }
+
+  getEmployees():Observable<any>{
+    return this.fdb.object('/employees').valueChanges();
+  }
+
+  saveReservation(reservation){
+    this.reservationRef.push(reservation);
+  }
+
+
 
 
 }

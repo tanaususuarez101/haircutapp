@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {TodoProvider} from "../../providers/todo/todo";
 import * as _ from 'lodash';
+import {ServiceDetailsPage} from "../service-details/service-details";
 
 /**
  * Generated class for the MyServicesPage page.
@@ -17,7 +18,7 @@ import * as _ from 'lodash';
 })
 export class MyServicesPage {
 
-  myServices: any = [];
+  reservation: any;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -25,9 +26,16 @@ export class MyServicesPage {
   }
 
   ionViewDidLoad() {
-    this.todo.getMyServices().subscribe( data =>{
-      console.log(data)
-    })
+    //console.log(this.todo.getMyServices());
+    this.todo.getMyServices().subscribe(
+      data =>{
+        this.reservation = _.values(data);
+        console.log(this.reservation);
+      }
+    )
   }
 
+  viewDetails() {
+    this.navCtrl.push(ServiceDetailsPage);
+  }
 }

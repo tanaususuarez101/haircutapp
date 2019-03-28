@@ -7,10 +7,11 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <ion-list no-lines>
-    <button ion-item *ngFor="let item of myServices">
-      {{ item }}
+<ion-content >
+  <ion-list>
+    <button ion-item *ngFor="let item of reservation" (click)="viewDetails()">
+      <h2>{{item.service_name}}</h2>
+      <ion-note item-end="">{{item.time | date:"dd/MM/yyy"}} a las {{item.hour}}</ion-note>
     </button>
   </ion-list>
 </ion-content>

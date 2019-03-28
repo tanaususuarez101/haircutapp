@@ -15,6 +15,7 @@ import { TodoProvider } from '../providers/todo/todo';
 import {ServicesPage} from "../pages/services/services";
 import {MyServicesPage} from "../pages/my-services/my-services";
 import {ReservationPage} from "../pages/reservation/reservation";
+import {ServiceDetailsPage} from "../pages/service-details/service-details";
 
 
 const firebaseConfig = {
@@ -31,7 +32,8 @@ const firebaseConfig = {
     MyApp,
     ServicesPage,
     MyServicesPage,
-    ReservationPage
+    ReservationPage,
+    ServiceDetailsPage
   ],
   imports: [
     BrowserModule,
@@ -47,7 +49,8 @@ const firebaseConfig = {
     MyApp,
     ServicesPage,
     MyServicesPage,
-    ReservationPage
+    ReservationPage,
+    ServiceDetailsPage
   ],
   providers: [
     AngularFireDatabaseModule,
