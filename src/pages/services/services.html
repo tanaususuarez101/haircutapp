@@ -9,6 +9,9 @@
 
 <ion-content>
   <ion-list>
+    <ion-list-header>
+      <h2>Servicios disponibles</h2>
+    </ion-list-header>
     <ion-item-group *ngFor="let typeServices of serviceAvailable">
       <ion-item-divider color="secondary">{{typeServices.group_name}}</ion-item-divider>
       <button ion-item *ngFor="let item of typeServices.group_service" (click)="goDoReservation(item)">

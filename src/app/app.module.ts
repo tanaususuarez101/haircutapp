@@ -16,6 +16,7 @@ import {ServicesPage} from "../pages/services/services";
 import {MyServicesPage} from "../pages/my-services/my-services";
 import {ReservationPage} from "../pages/reservation/reservation";
 import {ServiceDetailsPage} from "../pages/service-details/service-details";
+import {PipesModule} from "../pipes/pipes.module";
 
 
 const firebaseConfig = {
@@ -33,7 +34,7 @@ const firebaseConfig = {
     ServicesPage,
     MyServicesPage,
     ReservationPage,
-    ServiceDetailsPage
+    ServiceDetailsPage,
   ],
   imports: [
     BrowserModule,
@@ -41,8 +42,8 @@ const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-    CalendarModule
-    //CalendarModule
+    CalendarModule,
+    PipesModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

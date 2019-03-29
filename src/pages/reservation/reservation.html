@@ -39,7 +39,7 @@
 
     <ion-item>
       <ion-label color="dark">Peluquero</ion-label>
-      <ion-select  [(ngModel)]="employees" submitText="Ok" cancelText="Cancelar" >
+      <ion-select  [(ngModel)]="employees" submitText="Aceptar" cancelText="Cancelar">
         <ion-option value="default">Cualquiera</ion-option>
         <ion-option *ngFor="let item of listEmployees" value="{{item?.name}}">{{item?.name}}</ion-option>
       </ion-select>

@@ -25,9 +25,12 @@ export class ServicesPage {
   }
 
   ionViewDidLoad() {
+    this.initializeItems();
+  }
+
+  initializeItems(){
     this.todo.getAvailableServices().subscribe(data => {
       this.serviceAvailable = data;
-      //console.log(this.serviceAvailable);
     });
   }
 
@@ -36,5 +39,6 @@ export class ServicesPage {
       "service":service
     });
   }
+
 
 }

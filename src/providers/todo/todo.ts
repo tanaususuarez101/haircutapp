@@ -14,8 +14,6 @@ export class TodoProvider {
 
   private reservationRef: AngularFireList<any>;
 
-  reservation:any = {};
-
   constructor( private fdb: AngularFireDatabase) {
     this.reservationRef = this.fdb.list('reservations');
   }
@@ -33,9 +31,6 @@ export class TodoProvider {
       );
   }
 
-  getReservations(){
-    return this.reservation;
-  }
 
   getEmployees():Observable<any>{
     return this.fdb.object('/employees').valueChanges();
@@ -45,6 +40,23 @@ export class TodoProvider {
     this.reservationRef.push(reservation);
   }
 
+  removeReservation(key){
+    this.reservationRef.remove(key);
+  }
+
+  updateReservation(value){
+    this.reservationRef.update(
+      value.id,
+      {
+        employees_name: value.employees_name,
+        hour: value.hour,
+        service_duration: value.service_duration,
+        service_name: value.service_name,
+        service_price: value.service_price,
+        date: value.date
+      }
+    )
+  }
 
 
 

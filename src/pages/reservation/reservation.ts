@@ -19,8 +19,8 @@ import {MyServicesPage} from "../my-services/my-services";
 export class ReservationPage {
 
   typeService:any = null;
-  employees: any = null;
   listEmployees: any = [];
+  employees: any = null;
   date: any = null;
   hour: any = null;
 
@@ -28,12 +28,15 @@ export class ReservationPage {
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public modalCtrl: ModalController,
-              public todo: TodoProvider) {
-  }
+              public todo: TodoProvider) {}
+
   ionViewDidLoad() {
-    console.log(this.navParams.get('service'));
+
     this.typeService = this.navParams.get('service');
-    this.todo.getEmployees().subscribe(data => this.listEmployees = data);
+    if (this.typeService.employees_name != null) this.employees = this.typeService.employees_name;
+    if (this.typeService.time != null) this.date = this.typeService.time;
+    if (this.typeService.hour != null) this.hour = this.typeService.hour;
+    this.todo.getEmployees().subscribe(data =>this.listEmployees = data);
   }
 
   openCalendar() {
@@ -56,21 +59,34 @@ export class ReservationPage {
 
   doReserve() {
 
-    if (this.date != null && this.hour != null && this.employees != null){
+    if (this.typeService.id == null){
+      if (this.date != null && this.hour != null && this.employees != null){
+        this.todo.saveReservation({
+          date: this.date,
+          hour: this.hour,
+          employees_name: this.employees,
+          service_name: this.typeService.service_name,
+          service_price: this.typeService.price,
+          service_duration: this.typeService.duration
+        });
+        this.navCtrl.setRoot(MyServicesPage);
 
-      this.todo.saveReservation({
-        time: this.date.time,
-        hour: this.hour,
-        employees_name: this.employees,
-        services_id:  this.typeService.id,
-        service_name: this.typeService.service_name,
-        service_price: this.typeService.price,
-        service_duration: this.typeService.duration
-      });
-      this.navCtrl.setRoot(MyServicesPage);
-
+      } else {
+        console.log( 'Falta algun dato' );
+      }
     } else {
-      console.log( 'Falta algun dato' );
+      this.todo.updateReservation(
+        {
+          id: this.typeService.id,
+          date: this.date,
+          hour: this.hour,
+          employees_name: this.employees,
+          service_name: this.typeService.service_name,
+          service_price: this.typeService.price,
+          service_duration: this.typeService.duration
+      });
+      this.navCtrl.pop();
+
     }
   }
 }

@@ -9,9 +9,13 @@
 
 <ion-content >
   <ion-list>
-    <button ion-item *ngFor="let item of reservation" (click)="viewDetails()">
-      <h2>{{item.service_name}}</h2>
-      <ion-note item-end="">{{item.time | date:"dd/MM/yyy"}} a las {{item.hour}}</ion-note>
-    </button>
+    <ion-list-header>
+      <h2>Servicios confirmados</h2>
+    </ion-list-header>
+    <ion-item ion-item *ngFor="let item of reservation | ordenByTime" (click)="viewDetails(item)">
+      <h2>{{item?.service_name}}</h2>
+      <p>{{item?.date?.time | date:"dd/MM/yyy"}}</p>
+      <ion-note item-end="">{{item?.hour}}h</ion-note>
+    </ion-item>
   </ion-list>
 </ion-content>

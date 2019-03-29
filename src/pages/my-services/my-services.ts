@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {IonicPage, ModalController, NavController, NavParams} from 'ionic-angular';
 import {TodoProvider} from "../../providers/todo/todo";
 import * as _ from 'lodash';
 import {ServiceDetailsPage} from "../service-details/service-details";
@@ -22,20 +22,35 @@ export class MyServicesPage {
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              public todo: TodoProvider) {
+              public todo: TodoProvider,
+              public modalCtrl: ModalController) {
   }
 
   ionViewDidLoad() {
     //console.log(this.todo.getMyServices());
+
     this.todo.getMyServices().subscribe(
+
       data =>{
-        this.reservation = _.values(data);
-        console.log(this.reservation);
+        this.reservation = _.map(data, (value, id) => (
+          {
+            id: id,
+            employees_name: value.employees_name,
+            hour: value.hour,
+            service_duration: value.service_duration,
+            service_name: value.service_name,
+            service_price: value.service_price,
+            services_id: value.services_id,
+            date: value.date
+          }));
       }
     )
   }
 
-  viewDetails() {
-    this.navCtrl.push(ServiceDetailsPage);
+
+  viewDetails(data) {
+
+    let modal = this.modalCtrl.create(ServiceDetailsPage, {'item':data});
+    modal.present();
   }
 }
