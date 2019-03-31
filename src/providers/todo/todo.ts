@@ -31,7 +31,6 @@ export class TodoProvider {
       );
   }
 
-
   getEmployees():Observable<any>{
     return this.fdb.object('/employees').valueChanges();
   }
@@ -44,18 +43,8 @@ export class TodoProvider {
     this.reservationRef.remove(key);
   }
 
-  updateReservation(value){
-    this.reservationRef.update(
-      value.id,
-      {
-        employees_name: value.employees_name,
-        hour: value.hour,
-        service_duration: value.service_duration,
-        service_name: value.service_name,
-        service_price: value.service_price,
-        date: value.date
-      }
-    )
+  updateReservation(id, data){
+    this.reservationRef.update(id, data);
   }
 
 

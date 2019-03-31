@@ -15,7 +15,9 @@ export class OrdenByTimePipe implements PipeTransform {
   transform(value: any, ...args) {
     if(!value || value.length < 2) return value;
     value.sort((a:any, b:any)=>{
-      new Date(a.date).getTime() - new Date(b.date).getTime();
+      if (a.date.string > b.date.string) return 1;
+      else if (a.date.string < b.date.string) return -1;
+      else return 0;
     });
     return value;
   }

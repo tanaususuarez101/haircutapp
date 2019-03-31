@@ -29,15 +29,12 @@ export class ServicesPage {
   }
 
   initializeItems(){
-    this.todo.getAvailableServices().subscribe(data => {
-      this.serviceAvailable = data;
-    });
+    this.todo.getAvailableServices().subscribe(data => this.serviceAvailable = data);
   }
 
   goDoReservation(service){
-    this.navCtrl.push(ReservationPage,{
-      "service":service
-    });
+
+    this.navCtrl.push(ReservationPage,{"service":service});
   }
 
 

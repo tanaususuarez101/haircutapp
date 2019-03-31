@@ -29,7 +29,6 @@ export class ServiceDetailsPage {
 
   ionViewDidLoad() {
     this.service = this.navParams.get('item');
-    console.log(this.service);
   }
 
   dismiss() {
@@ -43,16 +42,17 @@ export class ServiceDetailsPage {
   }
 
   updateServicie() {
+    this.dismiss();
     this.navCtrl.push(ReservationPage, {
       'service':{
-        price: this.service.service_price,
-        service_name: this.service.service_name,
-        duration: this.service.service_duration,
+        id: this.service.id,
         hour: this.service.hour,
         date: this.service.date,
-        id: this.service.id,
-        employees_name: this.service.employees_name
+        price: this.service.service_price,
+        duration: this.service.service_duration,
+        employees_name: this.service.employees_name,
+        service_name: this.service.service_name
       }});
-    this.dismiss();
+
   }
 }

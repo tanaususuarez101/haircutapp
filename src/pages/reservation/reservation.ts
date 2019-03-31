@@ -34,9 +34,10 @@ export class ReservationPage {
 
     this.typeService = this.navParams.get('service');
     if (this.typeService.employees_name != null) this.employees = this.typeService.employees_name;
-    if (this.typeService.time != null) this.date = this.typeService.time;
+    if (this.typeService.date != null) this.date = this.typeService.date;
     if (this.typeService.hour != null) this.hour = this.typeService.hour;
-    this.todo.getEmployees().subscribe(data =>this.listEmployees = data);
+    this.todo.getEmployees().subscribe(data => this.listEmployees = data);
+
   }
 
   openCalendar() {
@@ -59,34 +60,27 @@ export class ReservationPage {
 
   doReserve() {
 
-    if (this.typeService.id == null){
-      if (this.date != null && this.hour != null && this.employees != null){
-        this.todo.saveReservation({
-          date: this.date,
-          hour: this.hour,
-          employees_name: this.employees,
-          service_name: this.typeService.service_name,
-          service_price: this.typeService.price,
-          service_duration: this.typeService.duration
-        });
-        this.navCtrl.setRoot(MyServicesPage);
+    if (this.date == null || this.hour == null || this.employees == null){
+      console.log("Falta algún dato...");
+      return;
+    }
 
-      } else {
-        console.log( 'Falta algun dato' );
-      }
-    } else {
-      this.todo.updateReservation(
-        {
-          id: this.typeService.id,
-          date: this.date,
-          hour: this.hour,
-          employees_name: this.employees,
-          service_name: this.typeService.service_name,
-          service_price: this.typeService.price,
-          service_duration: this.typeService.duration
-      });
-      this.navCtrl.pop();
+    let data = {
+      date: this.date,
+      hour: this.hour,
+      employees_name: this.employees,
+      service_name: this.typeService.service_name,
+      service_price: this.typeService.price,
+      service_duration: this.typeService.duration
+    };
 
+    if ( this.typeService.id == null ){
+      this.todo.saveReservation( data );
+      this.navCtrl.setRoot(MyServicesPage);
+    } else{
+      this.todo.updateReservation( this.typeService.id, data );
+      this.navCtrl.popAll();
     }
   }
+
 }
