@@ -17,3 +17,4 @@ todas las librerías y paquetes.
 
 # Biografía
 + [Calendar ionic](https://www.npmjs.com/package/ion2-calendar)
++ [login](https://reviblog.net/2017/08/05/tutorial-de-ionic-firebase-parte-1-autenticacion-con-correo-y-contrasena/)

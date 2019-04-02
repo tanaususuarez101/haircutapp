@@ -27,6 +27,10 @@ export class ServicesPage {
 
   ionViewDidLoad() {
     this.initializeItems();
+    this.todo.getSession().subscribe(data=> console.log(data.uid));
+
+
+
   }
 
   initializeItems(){
@@ -39,7 +43,8 @@ export class ServicesPage {
           data => {
             this.serviceAvailable = data;
             loader.dismiss();
-          }
+          },
+          err => loader.dismiss()
       )}
     );
   }

@@ -34,12 +34,16 @@ export class ReservationPage {
               ) {}
 
   ionViewDidLoad() {
-    this.todo.getEmployees().subscribe(data => this.listEmployees = data);
+    this.todo.getEmployees()
+      .subscribe(data => this.listEmployees = data)
+
     this.typeService = this.navParams.get('service');
 
     this.employees = !(this.typeService.employees_name == null)? this.typeService.employees_name: null;
     this.date = !(this.typeService.date == null)? this.typeService.date: null;
     this.hour = !(this.typeService.hour == null)? this.typeService.hour: null;
+
+
   }
 
   openCalendar() {
@@ -79,7 +83,7 @@ export class ReservationPage {
       employees_name: this.employees,
       service_name: this.typeService.service_name,
       service_price: this.typeService.price,
-      service_duration: this.typeService.duration
+      service_duration: this.typeService.duration,
     };
 
     if ( this.typeService.id == null ){

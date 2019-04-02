@@ -17,6 +17,7 @@ import {MyServicesPage} from "../pages/my-services/my-services";
 import {ReservationPage} from "../pages/reservation/reservation";
 import {ServiceDetailsPage} from "../pages/service-details/service-details";
 import {PipesModule} from "../pipes/pipes.module";
+import {LoginPage} from "../pages/login/login";
 
 
 const firebaseConfig = {
@@ -35,6 +36,7 @@ const firebaseConfig = {
     MyServicesPage,
     ReservationPage,
     ServiceDetailsPage,
+    LoginPage,
   ],
   imports: [
     BrowserModule,
@@ -51,7 +53,8 @@ const firebaseConfig = {
     ServicesPage,
     MyServicesPage,
     ReservationPage,
-    ServiceDetailsPage
+    ServiceDetailsPage,
+    LoginPage,
   ],
   providers: [
     AngularFireDatabaseModule,
