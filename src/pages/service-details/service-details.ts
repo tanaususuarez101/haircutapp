@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {IonicPage, NavController, NavParams, ViewController} from 'ionic-angular';
+import {AlertController, IonicPage, NavController, NavParams, ViewController} from 'ionic-angular';
 import {TodoProvider} from "../../providers/todo/todo";
 import {ReservationPage} from "../reservation/reservation";
 
@@ -22,8 +22,8 @@ export class ServiceDetailsPage {
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public viewCtrl: ViewController,
-              public todo: TodoProvider) {
-  }
+              public todo: TodoProvider,
+              public alertCtrl: AlertController) {}
 
 
 
@@ -36,13 +36,32 @@ export class ServiceDetailsPage {
   }
 
   cancelServicie(id) {
-    this.dismiss();
-    this.todo.removeReservation(id);
+    let confirmationRemove = this.alertCtrl.create({
+      title: 'Eliminar cita',
+      message: '¿Seguro que quieres borrar esta cita?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            return;
+          }
+        },
+        {
+          text: 'Aceptar',
+          handler: () => {
+            this.dismiss();
+            this.todo.removeReservation(id);
+          }
+        }
+      ]
+    });
+    confirmationRemove.present();
 
   }
 
   updateServicie() {
-    this.dismiss();
+
     this.navCtrl.push(ReservationPage, {
       'service':{
         id: this.service.id,
@@ -53,6 +72,5 @@ export class ServiceDetailsPage {
         employees_name: this.service.employees_name,
         service_name: this.service.service_name
       }});
-
   }
 }

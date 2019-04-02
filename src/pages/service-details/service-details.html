@@ -21,9 +21,9 @@
 <ion-content padding>
   <ion-list>
     <ion-list-header>
-      Detalles
-
+      Servicio concertado
     </ion-list-header>
+
      <ion-item>
        Servicio
        <ion-note item-end="">{{service?.service_name}}</ion-note>
@@ -54,16 +54,22 @@
        <ion-note item-end="">{{service?.service_price}}€</ion-note>
      </ion-item>
 
-      <button ion-button icon-end round full color="danger" (click)="cancelServicie(service.id)">
+  </ion-list>
+
+  <ion-row>
+    <ion-col>
+      <button ion-button icon-end  full color="danger" (click)="cancelServicie(service.id)">
         Eliminar cita
         <ion-icon name="trash" ></ion-icon>
       </button>
-
-      <button ion-button icon-end round full color="secondary" (click)="updateServicie()">
+    </ion-col>
+    <ion-col>
+      <button ion-button icon-end  full color="secondary" (click)="updateServicie()">
         Modificar
         <ion-icon name="create"></ion-icon>
       </button>
-  </ion-list>
+    </ion-col>
+  </ion-row>
 
 
 </ion-content>

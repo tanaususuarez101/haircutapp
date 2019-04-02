@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {IonicPage, LoadingController, NavController, NavParams} from 'ionic-angular';
 import {TodoProvider} from "../../providers/todo/todo";
 import {ReservationPage} from "../reservation/reservation";
 
@@ -21,7 +21,8 @@ export class ServicesPage {
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              public todo: TodoProvider) {
+              public todo: TodoProvider,
+              public loadingController: LoadingController) {
   }
 
   ionViewDidLoad() {
@@ -29,12 +30,22 @@ export class ServicesPage {
   }
 
   initializeItems(){
-    this.todo.getAvailableServices().subscribe(data => this.serviceAvailable = data);
+    let loader = this.loadingController.create({
+      content: 'Accediendo a los datos ...',
+    });
+    loader.present()
+      .then(()=>{
+        this.todo.getServices().subscribe(
+          data => {
+            this.serviceAvailable = data;
+            loader.dismiss();
+          }
+      )}
+    );
   }
 
-  goDoReservation(service){
-
-    this.navCtrl.push(ReservationPage,{"service":service});
+  goDoReservation(item){
+    this.navCtrl.push(ReservationPage,{"service":item});
   }
 
 

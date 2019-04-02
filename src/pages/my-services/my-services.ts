@@ -27,7 +27,6 @@ export class MyServicesPage {
   }
 
   ionViewDidLoad() {
-    //console.log(this.todo.getMyServices());
 
     this.todo.getMyServices().subscribe(
 

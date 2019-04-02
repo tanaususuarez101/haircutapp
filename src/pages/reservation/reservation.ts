@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {IonicPage, ModalController, NavController, NavParams} from 'ionic-angular';
+import {AlertController, IonicPage, ModalController, NavController, NavParams} from 'ionic-angular';
 import { CalendarModal, CalendarModalOptions, CalendarResult } from "ion2-calendar";
 import {TodoProvider} from "../../providers/todo/todo";
 import {MyServicesPage} from "../my-services/my-services";
@@ -18,26 +18,28 @@ import {MyServicesPage} from "../my-services/my-services";
 })
 export class ReservationPage {
 
+
   typeService:any = null;
   listEmployees: any = [];
-  employees: any = null;
-  date: any = null;
-  hour: any = null;
+  employees: any;
+  date: any;
+  hour: any;
 
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public modalCtrl: ModalController,
-              public todo: TodoProvider) {}
+              public todo: TodoProvider,
+              public alertCtrl: AlertController
+              ) {}
 
   ionViewDidLoad() {
-
-    this.typeService = this.navParams.get('service');
-    if (this.typeService.employees_name != null) this.employees = this.typeService.employees_name;
-    if (this.typeService.date != null) this.date = this.typeService.date;
-    if (this.typeService.hour != null) this.hour = this.typeService.hour;
     this.todo.getEmployees().subscribe(data => this.listEmployees = data);
+    this.typeService = this.navParams.get('service');
 
+    this.employees = !(this.typeService.employees_name == null)? this.typeService.employees_name: null;
+    this.date = !(this.typeService.date == null)? this.typeService.date: null;
+    this.hour = !(this.typeService.hour == null)? this.typeService.hour: null;
   }
 
   openCalendar() {
@@ -58,10 +60,16 @@ export class ReservationPage {
     })
   }
 
+
   doReserve() {
 
     if (this.date == null || this.hour == null || this.employees == null){
-      console.log("Falta algún dato...");
+      let alert = this.alertCtrl.create({
+        title: '¡Faltan campos!',
+        subTitle: 'Por favor, rellene todos los campos antes de confirmar su servicio',
+        buttons: ['¡Ups, lo siento!']
+      });
+      alert.present();
       return;
     }
 
@@ -81,6 +89,7 @@ export class ReservationPage {
       this.todo.updateReservation( this.typeService.id, data );
       this.navCtrl.popAll();
     }
+
   }
 
 }

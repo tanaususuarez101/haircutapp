@@ -13,22 +13,19 @@ import {map} from "rxjs/operators";
 export class TodoProvider {
 
   private reservationRef: AngularFireList<any>;
+  private allServices:Observable<any>;
+  private userServices: Observable<any>;
 
   constructor( private fdb: AngularFireDatabase) {
     this.reservationRef = this.fdb.list('reservations');
   }
 
-  getAvailableServices():Observable<any>{
+  getServices():Observable<any>{
     return this.fdb.object('/services').valueChanges();
   }
 
   getMyServices():Observable<any> {
-    return this.fdb.object('/reservations').valueChanges()
-      .pipe(
-        map(value => {
-          return value
-        })
-      );
+    return this.fdb.object('/reservations').valueChanges();
   }
 
   getEmployees():Observable<any>{
@@ -36,7 +33,7 @@ export class TodoProvider {
   }
 
   saveReservation(reservation){
-    this.reservationRef.push(reservation);
+    return this.reservationRef.push(reservation);
   }
 
   removeReservation(key){
