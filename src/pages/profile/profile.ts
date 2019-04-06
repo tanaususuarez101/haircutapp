@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {TodoProvider} from "../../providers/todo/todo";
+import {LoginPage} from "../login/login";
 
 /**
  * Generated class for the ProfilePage page.
@@ -14,12 +16,16 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'profile.html',
 })
 export class ProfilePage {
+  user: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              public todo: TodoProvider) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ProfilePage');
+    this.user = this.todo.getSession();
+    if (!this.user) this.navCtrl.setRoot(LoginPage);
   }
 
 }

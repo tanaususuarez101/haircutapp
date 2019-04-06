@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {IonicPage, LoadingController, NavController, NavParams} from 'ionic-angular';
+import {IonicPage, LoadingController, ModalController, NavController, NavParams} from 'ionic-angular';
 import {TodoProvider} from "../../providers/todo/todo";
 import {ReservationPage} from "../reservation/reservation";
 
@@ -22,7 +22,8 @@ export class ServicesPage {
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public todo: TodoProvider,
-              public loadingController: LoadingController) {
+              public loadingController: LoadingController,
+              public modalCtrl: ModalController) {
   }
 
   ionViewDidLoad() {
@@ -39,10 +40,13 @@ export class ServicesPage {
           data => {
             this.serviceAvailable = data;
             loader.dismiss();
-          },
-          err => loader.dismiss()
-      )}
-    );
+          }
+        )
+      })
+      .catch(err =>{
+        console.log("Error al cargar los servicios");
+        loader.dismiss();
+      });
   }
 
   goDoReservation(item){

@@ -2,8 +2,6 @@ import { Component } from '@angular/core';
 import {AlertController, IonicPage, ModalController, NavController, NavParams} from 'ionic-angular';
 import { CalendarModal, CalendarResult } from "ion2-calendar";
 import {TodoProvider} from "../../providers/todo/todo";
-import {MyServicesPage} from "../my-services/my-services";
-import {HomePage} from "../home/home";
 
 /**
  * Generated class for the ReservationPage page.
@@ -86,15 +84,15 @@ export class ReservationPage {
       uid: this.uid
     };
 
-    if ( this.typeService.id == null ){
-      this.todo.saveReservation( data );
+    if (this.typeService.id == null){
+      this.todo.saveReservation(data);
       this.navCtrl.pop();
-
-    } else{
-      this.todo.updateReservation( this.typeService.id, data );
-      this.navCtrl.popAll();
-
     }
+    else {
+      this.todo.updateReservation(this.typeService.id, data);
+      this.navCtrl.pop();
+    }
+
 
 
   }

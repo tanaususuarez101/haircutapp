@@ -61,7 +61,7 @@ export class ServiceDetailsPage {
   }
 
   updateServicie() {
-
+    this.navCtrl.pop();
     this.navCtrl.push(ReservationPage, {
       'service':{
         id: this.service.id,

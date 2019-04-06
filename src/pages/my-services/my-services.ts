@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import {IonicPage, ModalController, NavController, NavParams} from 'ionic-angular';
 import {TodoProvider} from "../../providers/todo/todo";
-import * as _ from 'lodash';
 import {ServiceDetailsPage} from "../service-details/service-details";
 
 /**
@@ -32,8 +31,8 @@ export class MyServicesPage {
 
 
   viewDetails(data) {
-
-    let modal = this.modalCtrl.create(ServiceDetailsPage, {'item':data});
-    modal.present();
+    this.navCtrl.push(ServiceDetailsPage, {'item':data})
+    /*let modal = this.modalCtrl.create(ServiceDetailsPage, {'item':data});
+    modal.present();*/
   }
 }

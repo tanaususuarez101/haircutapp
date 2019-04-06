@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import {AlertController, IonicPage, LoadingController, NavController, NavParams, ToastController} from 'ionic-angular';
-import {ServicesPage} from "../services/services";
 import {TodoProvider} from "../../providers/todo/todo";
 import {HomePage} from "../home/home";
 

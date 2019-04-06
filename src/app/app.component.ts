@@ -4,12 +4,11 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 
-import {ServicesPage} from "../pages/services/services";
-import {MyServicesPage} from "../pages/my-services/my-services";
 import {LoginPage} from "../pages/login/login";
 import {TodoProvider} from "../providers/todo/todo";
 import {ProfilePage} from "../pages/profile/profile";
 import {HomePage} from "../pages/home/home";
+
 @Component({
   templateUrl: 'app.html'
 })
@@ -26,6 +25,7 @@ export class MyApp {
    this.initializeApp();
   }
 
+
   initializeApp(){
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
@@ -35,11 +35,12 @@ export class MyApp {
     });
   }
 
-  goServices(){
-    this.nav.setRoot(ServicesPage);
+  goHome() {
+    this.nav.setRoot(HomePage);
   }
-  goMyServices(){
-    this.nav.setRoot(MyServicesPage);
+
+  goMyProfile() {
+    this.nav.setRoot(ProfilePage);
   }
 
   logout() {
@@ -55,15 +56,7 @@ export class MyApp {
       .catch(err =>{
         console.log("Ha habido un error al salir");
       });
-
   }
 
-  goMyProfile() {
-    this.nav.setRoot(ProfilePage);
-  }
-
-  goHome() {
-    this.nav.setRoot(HomePage);
-  }
 }
 
