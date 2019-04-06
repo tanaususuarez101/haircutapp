@@ -27,23 +27,7 @@ export class MyServicesPage {
   }
 
   ionViewDidLoad() {
-
-    this.todo.getMyServices().subscribe(
-
-      data =>{
-        this.reservation = _.map(data, (value, id) => (
-          {
-            id: id,
-            employees_name: value.employees_name,
-            hour: value.hour,
-            service_duration: value.service_duration,
-            service_name: value.service_name,
-            service_price: value.service_price,
-            services_id: value.services_id,
-            date: value.date
-          }));
-      }
-    )
+    this.todo.getMyServices().subscribe(data => this.reservation = data );
   }
 
 

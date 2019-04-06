@@ -27,10 +27,6 @@ export class ServicesPage {
 
   ionViewDidLoad() {
     this.initializeItems();
-    this.todo.getSession().subscribe(data=> console.log(data.uid));
-
-
-
   }
 
   initializeItems(){

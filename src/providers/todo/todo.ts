@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import {AngularFireDatabase, AngularFireList} from "@angular/fire/database";
+import {AngularFireAuth} from "@angular/fire/auth";
 import {Observable} from "rxjs";
 import {map} from "rxjs/operators";
-import {AngularFireAuth} from "@angular/fire/auth";
+import * as _ from 'lodash';
 
 /*
   Generated class for the TodoProvider provider.
@@ -14,12 +15,17 @@ import {AngularFireAuth} from "@angular/fire/auth";
 export class TodoProvider {
 
   private reservationRef: AngularFireList<any>;
-  private allServices:Observable<any>;
-  private userServices: Observable<any>;
+  private sessionUser: any = null;
 
   constructor( private fdb: AngularFireDatabase,
                private afAuth: AngularFireAuth) {
+
     this.reservationRef = this.fdb.list('reservations');
+
+    /*
+     * TODO - Verificar mediante token si la sesión sigue siendo válida.
+    * */
+    this.sessionUser = JSON.parse(localStorage.getItem("sesion"));;
   }
 
   getServices():Observable<any>{
@@ -27,7 +33,26 @@ export class TodoProvider {
   }
 
   getMyServices():Observable<any> {
-    return this.fdb.object('/reservations').valueChanges();
+    return this.fdb.object('/reservations')
+      .snapshotChanges()
+      .pipe(
+        map ( data => {
+          return _.map(data.payload.val(), (value, id)=> (
+            {
+              id: id,
+              uid: value.uid,
+              date: value.date,
+              hour: value.hour,
+              employees_name: value.employees_name,
+              service_duration: value.service_duration,
+              service_name: value.service_name,
+              service_price: value.service_price,
+
+            }
+          )).filter( value => value.uid == this.sessionUser.uid);
+
+        })
+      );
   }
 
   getEmployees():Observable<any>{
@@ -44,6 +69,7 @@ export class TodoProvider {
 
   updateReservation(id, data){
     this.reservationRef.update(id, data);
+
   }
 
   registerUser(user){
@@ -51,18 +77,23 @@ export class TodoProvider {
   }
 
   loginUser(user){
-    return this.afAuth.auth.signInWithEmailAndPassword(user.email, user.password)
+    return this.afAuth.auth
+      .signInWithEmailAndPassword(user.email, user.password)
+      .then((sesion)=> {
+        if (typeof(Storage) !== "undefined") {
+          localStorage.setItem("sesion", JSON.stringify(sesion.user));
+        }
+        this.sessionUser = sesion.user;
+      });
   }
+
   closeSession(){
+    localStorage.removeItem("sesion");
+    this.sessionUser = null;
     return this.afAuth.auth.signOut();
   }
 
   getSession(){
-    return this.afAuth.authState;
+    return this.sessionUser;
   }
-
-  getUid(){
-    return this.afAuth.auth.onAuthStateChanged;
-  }
-
 }

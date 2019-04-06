@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import {AlertController, IonicPage, NavController, NavParams} from 'ionic-angular';
+import {AlertController, IonicPage, LoadingController, NavController, NavParams, ToastController} from 'ionic-angular';
 import {ServicesPage} from "../services/services";
 import {TodoProvider} from "../../providers/todo/todo";
+import {HomePage} from "../home/home";
 
 /**
  * Generated class for the LoginPage page.
@@ -23,11 +24,14 @@ export class LoginPage {
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public todo: TodoProvider,
-              public alertCtrl: AlertController) {
+              public alertCtrl: AlertController,
+              public toastCtrl: ToastController,
+              public loadingController: LoadingController) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad SignupPage');
+    let res = this.todo.getSession();
+    if (res) this.navCtrl.setRoot(HomePage);
   }
 
 
@@ -36,8 +40,12 @@ export class LoginPage {
     if (this.user.email=="" || this.user.password=="" ) return;
 
     this.todo.registerUser(this.user)
-      .then((user) => {
-        console.log("Usuario registrado");
+      .then(() => {
+        const toast = this.toastCtrl.create({
+          message: 'Usuario registrado',
+          duration: 3000
+        });
+        toast.present();
       })
       .catch(err=>{
         let alert = this.alertCtrl.create({
@@ -51,18 +59,24 @@ export class LoginPage {
 
   login() {
     console.log(this.user);
-    this.todo.loginUser(this.user)
+    let loader = this.loadingController.create({
+      content: 'Un momento por favor...',
+    });
+    loader.present()
       .then(()=>{
-        console.log("Login realizado");
-        this.navCtrl.setRoot(ServicesPage);
-      })
-      .catch(err=> {
-        let alert = this.alertCtrl.create({
-          title: 'Error',
-          subTitle: err.message,
-          buttons: ['Aceptar']
-        });
-        alert.present();
-      })
+        this.todo.loginUser(this.user)
+          .then(()=> {
+            this.navCtrl.setRoot(HomePage);
+          })
+          .catch(err=> {
+            let alert = this.alertCtrl.create({
+              title: 'Error',
+              subTitle: err.message,
+              buttons: ['Aceptar']
+            });
+            alert.present();
+          })
+      });
+    loader.dismiss();
   }
 }

@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import {AlertController, IonicPage, ModalController, NavController, NavParams} from 'ionic-angular';
-import { CalendarModal, CalendarModalOptions, CalendarResult } from "ion2-calendar";
+import { CalendarModal, CalendarResult } from "ion2-calendar";
 import {TodoProvider} from "../../providers/todo/todo";
 import {MyServicesPage} from "../my-services/my-services";
+import {HomePage} from "../home/home";
 
 /**
  * Generated class for the ReservationPage page.
@@ -24,6 +25,7 @@ export class ReservationPage {
   employees: any;
   date: any;
   hour: any;
+  uid: any = null;
 
 
   constructor(public navCtrl: NavController,
@@ -34,27 +36,24 @@ export class ReservationPage {
               ) {}
 
   ionViewDidLoad() {
-    this.todo.getEmployees()
-      .subscribe(data => this.listEmployees = data)
-
+    this.todo.getEmployees().subscribe(data => this.listEmployees = data);
     this.typeService = this.navParams.get('service');
 
+    this.uid = this.todo.getSession().uid;
     this.employees = !(this.typeService.employees_name == null)? this.typeService.employees_name: null;
     this.date = !(this.typeService.date == null)? this.typeService.date: null;
     this.hour = !(this.typeService.hour == null)? this.typeService.hour: null;
 
-
   }
 
   openCalendar() {
-    const options: CalendarModalOptions = {
-      title: 'Calendario',
-      disableWeeks: [0, 6],
-      pickMode:"single",
-      autoDone: true
-    };
-    let myCalendar =  this.modalCtrl.create(CalendarModal, {
-      options: options
+    let myCalendar = this.modalCtrl.create(CalendarModal, {
+      options: {
+        title: 'Calendario',
+        disableWeeks: [0, 6],
+        pickMode: "single",
+        autoDone: true
+      }
     });
 
     myCalendar.present();
@@ -84,15 +83,19 @@ export class ReservationPage {
       service_name: this.typeService.service_name,
       service_price: this.typeService.price,
       service_duration: this.typeService.duration,
+      uid: this.uid
     };
 
     if ( this.typeService.id == null ){
       this.todo.saveReservation( data );
-      this.navCtrl.setRoot(MyServicesPage);
+      this.navCtrl.pop();
+
     } else{
       this.todo.updateReservation( this.typeService.id, data );
       this.navCtrl.popAll();
+
     }
+
 
   }
 

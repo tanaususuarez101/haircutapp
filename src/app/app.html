@@ -7,10 +7,21 @@
 
   <ion-content>
     <ion-list>
-      <ion-list-header>Navegación</ion-list-header>
-      <button menuClose ion-item (click)="goServices()">Servicios</button>
-      <button menuClose ion-item (click)="goMyServices()">Mis servicios</button>
-      <button menuClose ion-item (click)="logout()">Salir</button>
+      <ion-item menuClose (click)="goHome()">
+        <ion-icon item-start name="home"></ion-icon>
+        <h2>Inicio</h2>
+      </ion-item>
+
+      <ion-item menuClose (click)="goMyProfile()">
+        <ion-icon item-start name="contact"></ion-icon>
+        <h2>Perfil</h2>
+      </ion-item>
+
+      <ion-item menuClose (click)="logout()">
+        <ion-icon item-start name="log-out"></ion-icon>
+        <h2>salir</h2>
+      </ion-item>
+
     </ion-list>
   </ion-content>
 

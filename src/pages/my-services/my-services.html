@@ -1,16 +1,11 @@
 <ion-header>
-  <ion-navbar color="primary">
-    <button ion-button menuToggle="">
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Mis servicios</ion-title>
-  </ion-navbar>
+
 </ion-header>
 
 <ion-content >
   <ion-list>
     <ion-list-header>
-      <h2>Servicios confirmados</h2>
+      <h2>Citas confirmados</h2>
     </ion-list-header>
     <ion-item ion-item *ngFor="let item of reservation | ordenByTime" (click)="viewDetails(item)">
       <h2>{{item?.service_name}}</h2>
