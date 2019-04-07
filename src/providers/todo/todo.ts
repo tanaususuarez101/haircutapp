@@ -25,7 +25,7 @@ export class TodoProvider {
     /*
      * TODO - Verificar mediante token si la sesión sigue siendo válida.
     * */
-    this.sessionUser = JSON.parse(localStorage.getItem("sesion"));;
+    this.sessionUser = JSON.parse(localStorage.getItem("sesion"));
   }
 
   getServices():Observable<any>{
@@ -64,11 +64,11 @@ export class TodoProvider {
   }
 
   removeReservation(key){
-    this.reservationRef.remove(key);
+    return this.reservationRef.remove(key);
   }
 
   updateReservation(id, data){
-    this.reservationRef.update(id, data);
+    return this.reservationRef.update(id, data);
 
   }
 
@@ -96,4 +96,5 @@ export class TodoProvider {
   getSession(){
     return this.sessionUser;
   }
+
 }

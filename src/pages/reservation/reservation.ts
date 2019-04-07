@@ -85,13 +85,30 @@ export class ReservationPage {
     };
 
     if (this.typeService.id == null){
-      this.todo.saveReservation(data);
-      this.navCtrl.pop();
+      this.todo.saveReservation(data)
+        .then(()=>{
+          let alert = this.alertCtrl.create({
+            title: 'Servicio guardado',
+            subTitle: 'Su reserva ha sido confirmada y guardada.\nMuchas gracias',
+            buttons: ['Aceptar']
+          });
+          alert.present();
+        });
+
     }
     else {
-      this.todo.updateReservation(this.typeService.id, data);
-      this.navCtrl.pop();
+      this.todo.updateReservation(this.typeService.id, data)
+        .then(()=>{
+          let alert = this.alertCtrl.create({
+            title: 'Servicio actualizado',
+            subTitle: 'Su reserva ha sido confirmada y guardada.\nMuchas gracias',
+            buttons: ['Aceptar']
+          });
+          alert.present();
+        });
+
     }
+    this.navCtrl.pop();
 
 
 

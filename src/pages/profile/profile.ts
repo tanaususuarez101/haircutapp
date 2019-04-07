@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {AlertController, IonicPage, NavController, NavParams} from 'ionic-angular';
 import {TodoProvider} from "../../providers/todo/todo";
 import {LoginPage} from "../login/login";
 
@@ -20,7 +20,8 @@ export class ProfilePage {
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              public todo: TodoProvider) {
+              public todo: TodoProvider,
+              public alertCtrl: AlertController) {
   }
 
   ionViewDidLoad() {
