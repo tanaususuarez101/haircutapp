@@ -26,14 +26,15 @@ export class LoginPage {
               public alertCtrl: AlertController,
               public toastCtrl: ToastController,
               public loadingController: LoadingController) {
+
   }
 
   ionViewDidLoad() {
-    let res = this.todo.getSession();
-    if (res) this.navCtrl.setRoot(HomePage);
+   this.todo.initSesion()
+     .then(()=> {
+       if(this.todo.getSession()) this.navCtrl.setRoot(HomePage);
+     })
   }
-
-
 
   signin() {
     if (this.user.email=="" || this.user.password=="" ) return;

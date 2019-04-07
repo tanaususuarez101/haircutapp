@@ -4,6 +4,7 @@ import {AngularFireAuth} from "@angular/fire/auth";
 import {Observable} from "rxjs";
 import {map} from "rxjs/operators";
 import * as _ from 'lodash';
+import { Storage } from '@ionic/storage';
 
 /*
   Generated class for the TodoProvider provider.
@@ -18,14 +19,23 @@ export class TodoProvider {
   private sessionUser: any = null;
 
   constructor( private fdb: AngularFireDatabase,
-               private afAuth: AngularFireAuth) {
+               private afAuth: AngularFireAuth,
+               private storage: Storage) {
 
     this.reservationRef = this.fdb.list('reservations');
 
     /*
      * TODO - Verificar mediante token si la sesión sigue siendo válida.
     * */
-    this.sessionUser = JSON.parse(localStorage.getItem("sesion"));
+    //this.sessionUser = JSON.parse(localStorage.getItem("sesion"));
+
+
+  }
+
+  initSesion () {
+    return this.storage.get("sesion").then((value)=>{
+      this.sessionUser = JSON.parse(value);
+    });
   }
 
   getServices():Observable<any>{
@@ -69,7 +79,6 @@ export class TodoProvider {
 
   updateReservation(id, data){
     return this.reservationRef.update(id, data);
-
   }
 
   registerUser(user){
@@ -81,14 +90,17 @@ export class TodoProvider {
       .signInWithEmailAndPassword(user.email, user.password)
       .then((sesion)=> {
         if (typeof(Storage) !== "undefined") {
-          localStorage.setItem("sesion", JSON.stringify(sesion.user));
+          //localStorage.setItem("sesion", JSON.stringify(sesion.user));
+          this.storage.set("sesion", JSON.stringify(sesion.user));
         }
         this.sessionUser = sesion.user;
       });
   }
 
   closeSession(){
-    localStorage.removeItem("sesion");
+    //localStorage.removeItem("sesion");
+    this.storage.remove("sesion")
+      .then((value) => console.log("sesion borrada",value));
     this.sessionUser = null;
     return this.afAuth.auth.signOut();
   }

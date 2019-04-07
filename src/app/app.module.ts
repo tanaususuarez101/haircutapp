@@ -7,8 +7,8 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule} from '@angular/fire/database';
 import { AngularFireAuthModule} from '@angular/fire/auth';
-//import { CalendarModule } from 'ionic3-calendar-en';
 import { CalendarModule } from "ion2-calendar";
+import { IonicStorageModule } from "@ionic/storage";
 
 import { MyApp } from './app.component';
 import { TodoProvider } from '../providers/todo/todo';
@@ -20,6 +20,7 @@ import {PipesModule} from "../pipes/pipes.module";
 import {LoginPage} from "../pages/login/login";
 import {ProfilePage} from "../pages/profile/profile";
 import {HomePage} from "../pages/home/home";
+
 
 
 const firebaseConfig = {
@@ -46,6 +47,7 @@ const firebaseConfig = {
     BrowserModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseConfig),
+    IonicStorageModule.forRoot(),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     CalendarModule,
