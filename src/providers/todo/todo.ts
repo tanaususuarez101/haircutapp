@@ -109,4 +109,7 @@ export class TodoProvider {
     return this.sessionUser;
   }
 
+  getInform() {
+    return this.fdb.object('/details').valueChanges();
+  }
 }

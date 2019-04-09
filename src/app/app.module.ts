@@ -20,6 +20,7 @@ import {PipesModule} from "../pipes/pipes.module";
 import {LoginPage} from "../pages/login/login";
 import {ProfilePage} from "../pages/profile/profile";
 import {HomePage} from "../pages/home/home";
+import {ContactPage} from "../pages/contact/contact";
 
 
 
@@ -41,7 +42,8 @@ const firebaseConfig = {
     ServiceDetailsPage,
     LoginPage,
     ProfilePage,
-    HomePage
+    HomePage,
+    ContactPage
   ],
   imports: [
     BrowserModule,
@@ -62,7 +64,8 @@ const firebaseConfig = {
     ServiceDetailsPage,
     LoginPage,
     ProfilePage,
-    HomePage
+    HomePage,
+    ContactPage
   ],
   providers: [
     AngularFireDatabaseModule,

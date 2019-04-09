@@ -8,6 +8,7 @@ import {LoginPage} from "../pages/login/login";
 import {TodoProvider} from "../providers/todo/todo";
 import {ProfilePage} from "../pages/profile/profile";
 import {HomePage} from "../pages/home/home";
+import {ContactPage} from "../pages/contact/contact";
 
 @Component({
   templateUrl: 'app.html'
@@ -15,7 +16,7 @@ import {HomePage} from "../pages/home/home";
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage:any = LoginPage;
+  rootPage:any = HomePage;
 
   constructor(public platform: Platform,
               public statusBar: StatusBar,
@@ -41,6 +42,10 @@ export class MyApp {
 
   goMyProfile() {
     this.nav.setRoot(ProfilePage);
+  }
+
+  goContact(){
+    this.nav.setRoot(ContactPage);
   }
 
   logout() {

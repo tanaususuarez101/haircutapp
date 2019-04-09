@@ -7,14 +7,19 @@
 
   <ion-content>
     <ion-list>
-      <ion-item menuClose (click)="goHome()">
+      <ion-item menuClose (click)="goHome()" color="primary">
         <ion-icon item-start name="home"></ion-icon>
         <h2>Inicio</h2>
       </ion-item>
 
-      <ion-item menuClose (click)="goMyProfile()">
+      <ion-item menuClose (click)="goMyProfile()" >
         <ion-icon item-start name="contact"></ion-icon>
         <h2>Perfil</h2>
+      </ion-item>
+
+      <ion-item menuClose (click)="goContact()">
+        <ion-icon item-start name="contacts"></ion-icon>
+        <h2>Contacto</h2>
       </ion-item>
 
       <ion-item menuClose (click)="logout()">
