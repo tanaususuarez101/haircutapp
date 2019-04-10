@@ -18,6 +18,8 @@ import {ReservationPage} from "../reservation/reservation";
 export class ServicesPage {
 
   serviceAvailable: any = [];
+  prevServicies: any = [];
+
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -39,6 +41,7 @@ export class ServicesPage {
         this.todo.getServices().subscribe(
           data => {
             this.serviceAvailable = data;
+            this.prevServicies = data;
             loader.dismiss();
           }
         )
@@ -52,6 +55,5 @@ export class ServicesPage {
   goDoReservation(item){
     this.navCtrl.push(ReservationPage,{"service":item});
   }
-
 
 }

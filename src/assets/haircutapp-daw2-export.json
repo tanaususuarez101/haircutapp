@@ -1,0 +1,207 @@
+{
+  "details" : {
+    "localitation" : "C/ Pedro Hidalgo 14, Las Palmas de Gran Canaria",
+    "phone" : "123 321 1231 11"
+  },
+  "employees" : [ {
+    "id" : "1",
+    "name" : "Juan"
+  }, {
+    "id" : "2",
+    "name" : "Francisco"
+  }, {
+    "id" : 3,
+    "name" : "Pepe"
+  } ],
+  "reservations" : {
+    "-LbmSM_XkeoZHRXM2Y2M" : {
+      "date" : {
+        "date" : 8,
+        "months" : 5,
+        "string" : "2019-05-08",
+        "time" : 1557270000000,
+        "unix" : 1557270000,
+        "years" : 2019
+      },
+      "employees_name" : "empleado_02",
+      "hour" : "20:00",
+      "service_duration" : "1 h",
+      "service_name" : "Tintes de barba",
+      "service_price" : 2.34,
+      "uid" : "2Mj89I9zLHTB56eo9qMnd9uRa4H3"
+    },
+    "-LbnKv7GFAv1V9a-8eFf" : {
+      "date" : {
+        "date" : 2,
+        "months" : 5,
+        "string" : "2019-05-02",
+        "time" : 1556751600000,
+        "unix" : 1556751600,
+        "years" : 2019
+      },
+      "employees_name" : "Francisco",
+      "hour" : "20:00",
+      "service_duration" : "30 min",
+      "service_name" : "Corte de pelo",
+      "service_price" : 11,
+      "uid" : "gj4TZy4Y7tNvX5KAZIHjZWOzLXH2"
+    },
+    "-Lbo-GsZfn2g1b-ZLxUy" : {
+      "date" : {
+        "date" : 15,
+        "months" : 5,
+        "string" : "2019-05-15",
+        "time" : 1557874800000,
+        "unix" : 1557874800,
+        "years" : 2019
+      },
+      "employees_name" : "Francisco",
+      "hour" : "20:00",
+      "service_duration" : "30 min",
+      "service_name" : "Corte de pelo",
+      "service_price" : 11,
+      "uid" : "gj4TZy4Y7tNvX5KAZIHjZWOzLXH2"
+    },
+    "-Lbo-kfWp2gQYf18Ni0H" : {
+      "date" : {
+        "date" : 31,
+        "months" : 5,
+        "string" : "2019-05-31",
+        "time" : 1559257200000,
+        "unix" : 1559257200,
+        "years" : 2019
+      },
+      "employees_name" : "Francisco",
+      "hour" : "20:00",
+      "service_duration" : "30 min",
+      "service_name" : "Corte de pelo",
+      "service_price" : 11,
+      "uid" : "gj4TZy4Y7tNvX5KAZIHjZWOzLXH2"
+    },
+    "-LbsVnIt3WQfm-q5ih1G" : {
+      "date" : {
+        "date" : 16,
+        "months" : 5,
+        "string" : "2019-05-16",
+        "time" : 1557961200000,
+        "unix" : 1557961200,
+        "years" : 2019
+      },
+      "employees_name" : "Juan",
+      "hour" : "08:00",
+      "service_duration" : "45 min",
+      "service_name" : "Tratamiento de alisado",
+      "service_price" : 30,
+      "uid" : "DOtQ9mPZBYejY2r5JyNnVS6HKSf1"
+    },
+    "-Lc0BmKj3csdI7xjYq_f" : {
+      "date" : {
+        "date" : 26,
+        "months" : 4,
+        "string" : "2019-04-26",
+        "time" : 1556233200000,
+        "unix" : 1556233200,
+        "years" : 2019
+      },
+      "employees_name" : "Juan",
+      "hour" : "08:00",
+      "service_duration" : "30 min",
+      "service_name" : "Desrizado",
+      "service_price" : 12,
+      "uid" : "DOtQ9mPZBYejY2r5JyNnVS6HKSf1"
+    },
+    "-Lc0C8MjxsVv7_iW5zxI" : {
+      "date" : {
+        "date" : 19,
+        "months" : 4,
+        "string" : "2019-04-19",
+        "time" : 1555628400000,
+        "unix" : 1555628400,
+        "years" : 2019
+      },
+      "employees_name" : "Francisco",
+      "hour" : "18:00",
+      "service_duration" : "30 min",
+      "service_name" : "Afeitado",
+      "service_price" : 10,
+      "uid" : "BQwldIsElZX9qn6vkYAdFOdjP2G3"
+    },
+    "-Lc1FoBR4RsBhmbGpgVS" : {
+      "date" : {
+        "date" : 24,
+        "months" : 5,
+        "string" : "2019-05-24",
+        "time" : 1558652400000,
+        "unix" : 1558652400,
+        "years" : 2019
+      },
+      "employees_name" : "Francisco",
+      "hour" : "18:00",
+      "service_duration" : "1 h",
+      "service_name" : "Tintes de barba",
+      "service_price" : 2.34,
+      "uid" : "BQwldIsElZX9qn6vkYAdFOdjP2G3"
+    }
+  },
+  "services" : [ {
+    "group_name" : "Corte de pelo",
+    "group_service" : [ {
+      "duration" : "30 min",
+      "price" : 11.0,
+      "service_name" : "Corte de pelo"
+    }, {
+      "duration" : "50 min",
+      "price" : 3.0,
+      "service_name" : "Dibujos/Diseño"
+    } ]
+  }, {
+    "group_name" : "Arreglos de barbas",
+    "group_service" : [ {
+      "duration" : "15 min",
+      "price" : 8.0,
+      "service_name" : "Arreglo de barba"
+    }, {
+      "duration" : "30 min",
+      "price" : 8.0,
+      "service_name" : "Lavado de barba"
+    }, {
+      "duration" : "1 h",
+      "price" : 2.34,
+      "service_name" : "Tintes de barba"
+    } ]
+  }, {
+    "group_name" : "Afeitado",
+    "group_service" : [ {
+      "duration" : "30 min",
+      "price" : 10.0,
+      "service_name" : "Afeitado"
+    }, {
+      "duration" : "5 min",
+      "price" : 4.0,
+      "service_name" : "Recortes"
+    } ]
+  }, {
+    "group_name" : "Tratamientos y otros servicios",
+    "group_service" : [ {
+      "duration" : "45 min",
+      "price" : 30.0,
+      "service_name" : "Tratamiento de alisado"
+    }, {
+      "duration" : "30 min",
+      "price" : 12,
+      "service_name" : "Desrizado"
+    }, {
+      "duration" : "30 min",
+      "price" : 30.0,
+      "service_name" : "Tintes"
+    }, {
+      "duration" : "30 min",
+      "price" : 12.0,
+      "service_name" : "Mechas"
+    }, {
+      "duration" : "5 min",
+      "price" : 5.0,
+      "service_name" : "Masaje capilar"
+    } ]
+  } ]
+}

@@ -9,16 +9,13 @@
 
 <ion-content>
   <ion-list>
-    <ion-list-header>
-      <h2>Servicios disponibles</h2>
-    </ion-list-header>
     <ion-item-group *ngFor="let typeServices of serviceAvailable">
-      <ion-item-divider color="secondary">{{typeServices.group_name}}</ion-item-divider>
-      <button ion-item *ngFor="let item of typeServices.group_service" (click)="goDoReservation(item)">
-        <h2>{{item.service_name}}</h2>
-        <p>{{item.duration}}</p>
+      <ion-item-divider color="secondary">{{typeServices?.group_name}}</ion-item-divider>
+      <button ion-item *ngFor="let item of typeServices?.group_service" (click)="goDoReservation(item)">
+        <h2>{{item?.service_name}}</h2>
+        <p>{{item?.duration}}</p>
         <ion-note item-end>
-          {{item.price}} €
+          {{item?.price}} €
         </ion-note>
       </button>
     </ion-item-group>
