@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {TodoProvider} from "../../providers/todo/todo";
+import {LoginPage} from "../login/login";
 
 /**
  * Generated class for the ContactPage page.
@@ -25,6 +26,7 @@ export class ContactPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ContactPage');
+    if (!this.todo.getSession()) this.navCtrl.setRoot(LoginPage);
     this.todo.getInform().subscribe((data)=> this.contact = data);
   }
 
