@@ -56,4 +56,21 @@ export class ServicesPage {
     this.navCtrl.push(ReservationPage,{"service":item});
   }
 
+  getItems(ev) {
+
+
+    var val = ev.target.value;
+    this.serviceAvailable = this.prevServicies;
+
+    this.serviceAvailable = this.serviceAvailable.map(
+      data => {
+        return {
+          group_name: data.group_name,
+          group_service : data.group_service.filter(
+            value => value.service_name.toLowerCase().indexOf(val.toLowerCase()) > -1
+          )
+        }
+      }
+    );
+  }
 }

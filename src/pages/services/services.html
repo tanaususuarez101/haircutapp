@@ -8,9 +8,10 @@
 </ion-header>
 
 <ion-content>
+  <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
   <ion-list>
     <ion-item-group *ngFor="let typeServices of serviceAvailable">
-      <ion-item-divider color="secondary">{{typeServices?.group_name}}</ion-item-divider>
+      <ion-item-divider *ngIf="typeServices?.group_service.length > 0" color="secondary">{{typeServices?.group_name}}</ion-item-divider>
       <button ion-item *ngFor="let item of typeServices?.group_service" (click)="goDoReservation(item)">
         <h2>{{item?.service_name}}</h2>
         <p>{{item?.duration}}</p>
